@@ -12,6 +12,8 @@ namespace NomogramPrint.Servicies
 {
     public class ExcelParser
     {
+
+        //Hello, im parser
         public DbContext GetData()
         {
             (int, int) km = getKm();
