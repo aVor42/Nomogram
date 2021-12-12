@@ -9,13 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using ComponentFactory.Krypton.Toolkit;
+
 using NomogramPrint.Drawing;
 using NomogramPrint.Models;
 using NomogramPrint.Servicies;
 
 namespace NomogramPrint
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : KryptonForm
     {
 
         private DrawSettings _drawSettings;
@@ -23,7 +26,7 @@ namespace NomogramPrint
         private ExcelParser _excelParser;
         private DbContext _context;
 
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
 
@@ -47,7 +50,18 @@ namespace NomogramPrint
             new Point(point.X + point.Y, 0);
 
 
-        private void button1_MouseClick(object sender, MouseEventArgs e)
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void image_name_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
         {
             var test = new Bitmap(4000, 1000);
 
@@ -56,15 +70,13 @@ namespace NomogramPrint
                 gr.SmoothingMode = SmoothingMode.AntiAlias;
 
                 _drawer.DrawKilometers(gr, _context.Kilometers);
-                
+
             }
 
             var img = (Image)test;
-            
+
             img.Save("test.png");
-            CreateGraphics().DrawImage(img, new Point(0, 0));
-
+            image_name.Image = img;
         }
-
     }
 }
